@@ -1,0 +1,14 @@
+errno : refers to the int of the last known error
+
+char *strerror(int errnum [assumedly the errno in question]) : translates from id number of error encountered into string explaining said error, ex. "Permission Denied."
+
+cat concatenates files to standard output, including standard input as well
+
+hello why was that so incredible easy ???
+
+I can't believe I barely even buffered on this
+This seems like it was meant to be harder, doesn't it ?
+
+anyway
+
+works fine now, going to fix the 

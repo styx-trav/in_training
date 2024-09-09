@@ -1,0 +1,27 @@
+new project !!
+
+instructions given : copy paste the hexdump -C function
+far as i can see, this command just spits out content given into ASCII loyal hexadecimal, which should be easy enough to attain ?
+i should think
+
+step one, read file one by one buffer of 2 max
+(maybe more a buffer 9 for an 8 by 8 read ? that's what the original function seems to do)
+step 2 find out what the hell those 0000000000 type beat givens are (also secret step 6)
+:: these are line numbers, shockingly enough, going
+00000000; 00000010; 00000020; etc. in hexdec as well.
+step 3 translate that char to (int) and use the hexadecimal base to translate into a string
+step 4 display
+
+we'll be starting with the int to hexadec string translation.
+alright, now that that's done let's try a simple char to int translation... fine too.
+now to feed it from the file directly, a read and disp function file - alright, works fine !!
+
+so next step divide into 8by8, times two with newlines in between, maybe even a stricter 16by16. the agreed-upon buffer size should help with the re-read issue we came across earlier that needs to be displayed after in a | {content} | format.
+
+done. now new problem : hexdump appears to read from one file to another with no stop in between ? which is bothersome and requires some tinkering on my part given mine goes one file then the other. (which i think is more efficient, but its whatever i guess)
+
+fixed ! i got it.
+
+now just the Makefile write, the argc adjustment, and we should be done !
+
+all good, only adding lines left. another session, though.

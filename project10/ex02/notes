@@ -1,0 +1,32 @@
+summary of instructions :
+
+display n number of bytes from file or stdin given as a string of numbers, or start displaying at [+]n bytes into the file, also given as a string of numbers. 
+
+tail appears to show a header for each "file" in case of mulitple of them, like so :
+
+==> {filename} <== or ==> standard input <==
+
+it also works like cat in the sense of '-' for stdin and the display of error msgs from errno.
+
+
+gonna attempt to use a double buffer system to gather the last n bytes by subtracting the read amount and getting it from the other buffer once at the end.
+it works it works !! congratulations to me, and immediately moving on to multiple choice and file options.
+
+alright !!
+the error newlines anomaly took me fucking forever to properly indicate, but i got it now.
+
+
+we'll ignore the +n version for now given it's a imo just a glorified delayed cat.
+
+
+tail itself appears to take in n up to 2^64, which I'm reading is meant to be the double (float). it should still be usable with natural numbers, though.
+
+checking it with tests immediately.
+
+alright, test results : uhhhhhhhhh idk, maybe it works ? maybe I'm just not good at displaying it and that's why it won't work ? also I'm getting a warning during compilation for an unsigned conversion which is sure to come back and bite me in the ass, even though i'm sure it would work fine as is. unsure what to do, for now we'll work with unsigned integers, up to 4,294,967,291.
+(2by64, the 18,446,744,073,709,551,615 limit)
+
+
+alright, so here's a couple of bytes for you.
+please display the last of them.
+thanks.

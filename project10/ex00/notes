@@ -1,0 +1,30 @@
+quick summary notes for use :
+
+int close(int fd) : returns -1 on error, else 0
+int open(char *filename, int flags [for our purposes O_RDONLY]) : returns -1 on error, else the new int fd
+int read(int fd, void buf[], size_t count) : returns the actual amount of bytes read, 0 when file endsqq, -1 on error
+
+couldn't find it anywhere, but I'm pretty sure if we can't close the file we're just cooked, so do with that what you will. it doesn't specify a need for an error msg though we'll have one on the draft here.
+
+summarized instructions :
+
+Error messages - in exit 2 :
+no arguments = "File name missing.\n"
+
+too many arguments = "Too many arguments.\n"
+(which...
+
+what ?
+
+what does too many arguments mean in this situation ? like over a signed integer ? That's a ridiculously high number to give, seriously.)
+
+
+can't read = "Cannot read file.\n"
+
+displays content of given files only
+
+program called ft_display_file
+
+Makefile with clean, fclean & all
+
+no malloc, just open read write close (straight to the point, at least) => using static arrays (however long we want before displaying with write)
