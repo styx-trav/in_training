@@ -1,0 +1,17 @@
+okay, so.
+
+instructions in short:
+./do-op [num1] [operator] [num2]
+=> num1 oped by num2
+
+list of operators: +; -; /; *; %.
+wrong amount of arguments: nothing.
+divide by zero: disp "Stop : division by zero".
+modulo by zero: disp "Stop : modulo by zero".
+wrong operator: disp "0".
+must_do's: use a function pointers tab for different operators.
+
+steps idd so far:
+a. atoi for num1 & num2
+b. create the function pointers tab
+c. call it in the main
