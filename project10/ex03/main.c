@@ -26,7 +26,7 @@ void  error_msg(char *argv, int err)
   return ;
 }
 
-int second(int argc, char **argv, char *buf)
+int second(int argc, char **argv, char *buf, int *ct)
 {
   int j;
   int fd;
@@ -34,21 +34,13 @@ int second(int argc, char **argv, char *buf)
   j = 2;
   while (j < argc)
   {
-    if(argv[j][0] == '-' && argv[j][1] == '\0')
-    {
-      if(reading_func(1, buf) == -1)
-      return (-1);
-    }
+    fd = open(argv[j], O_RDONLY);
+    if (fd == -1)
+      error_msg(argv[j], errno);
     else
     {
-      fd = open(argv[j], O_RDONLY);
-      if (fd == -1)
-        error_msg(argv[j], errno);
-      else
-      {
-        if (reading_func(fd, buf) == -1)
-          return (-1);
-      }
+      if (reading_func(fd, buf, ct) == -1)
+        return (-1);
     }
     j++;
   }
@@ -58,20 +50,22 @@ int second(int argc, char **argv, char *buf)
 int main(int argc, char **argv)
 {
   char  *buf;
+  int ct;
 
+  ct = 0;
   buf = create_buf();
   if (!buf)
     return (0);
   if(argc == 2)
   {
-    if(reading_func(1, buf) == -1)
+    if(reading_func(1, buf, &ct) == -1)
       return (0);
   }
-  if (second(argc, argv, buf) == -1)
+  if (second(argc, argv, buf, &ct) == -1)
     return (0);
   if (buf[0] != '\0')
   {
-    if (between_func(buf) == -1)
+    if (between_func(buf, &ct) == -1)
       return (0);
   }
   free(buf);

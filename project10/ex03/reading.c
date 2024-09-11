@@ -40,11 +40,13 @@ void  disp_read(char *buf, int j)
   write(1, "|\n", 2);
 }
 
-int between_func(char *buf)
+int between_func(char *buf, int *ct)
 {
   int j;
 
   j = 0;
+  if (buf[j])
+    disp_lines(ct);
   while (buf[j] && j < 8)
   {
     j = disp_hex(buf, j);
@@ -62,7 +64,7 @@ int between_func(char *buf)
   return (0);
 }
 
-int transitional_read(int fd, char *buf)
+int transitional_read(int fd, char *buf, int *ct)
 {
   int j;
   char *buffer;
@@ -86,17 +88,17 @@ int transitional_read(int fd, char *buf)
     }
     else
       free(buffer);
-    if (between_func(buf) == -1)
+    if (between_func(buf, ct) == -1)
       return (-1);
   }
   return (0);
 }
 
-int  reading_func(int fd, char *buf)
+int  reading_func(int fd, char *buf, int *ct)
 {
   int s;
 
-  s = transitional_read(fd, buf);
+  s = transitional_read(fd, buf, ct);
   if (s == -1)
     return (-1);
   if (s == 1)
@@ -105,7 +107,7 @@ int  reading_func(int fd, char *buf)
   s = read(fd, buf, 16);
   while (s == 16)
   {
-    if (between_func(buf) == -1)
+    if (between_func(buf, ct) == -1)
       return (-1);
     buf = empty_buf(buf);
     s = read(fd, buf, 16);

@@ -1,7 +1,7 @@
 CC=gcc
 CCFLAGS=-Wall -Wextra -Werror
 NAME=ft_hexdump
-SRCS=main.c convert.c reading.c bufs.c
+SRCS=main.c convert.c reading.c bufs.c disp_lines.c
 HEADER=lib.h
 
 $(NAME): $(SRCS) $(HEADER)

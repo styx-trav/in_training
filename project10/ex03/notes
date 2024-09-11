@@ -25,3 +25,8 @@ fixed ! i got it.
 now just the Makefile write, the argc adjustment, and we should be done !
 
 all good, only adding lines left. another session, though.
+
+lines added, new problem ! : um, aparently there's no stdin for '-', which should be an easy fix ? also cut up the disp_lines funcion and drop it into another file entirely please and thank you.
+
+alright, all done.
+good.

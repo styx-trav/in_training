@@ -1,7 +1,6 @@
 //HEADER
 
 #include "lib.h"
-#include <stdio.h>
 
 char  *fill_base(char *base)
 {
