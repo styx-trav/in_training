@@ -1,7 +1,7 @@
 //HEADER
 
 //goal: sort a tab of strings in ascii order
-//i'm assuming tab is null-terminated ?
+//i'm assuming tab is null-terminated ? it is
 #include <stdlib.h>
 #include <stdio.h>
 
