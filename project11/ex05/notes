@@ -12,6 +12,10 @@ wrong operator: disp "0".
 must_do's: use a function pointers tab for different operators.
 
 steps idd so far:
-a. atoi for num1 & num2
-b. create the function pointers tab
-c. call it in the main
+a. atoi for num1 & num2 (check and tested, for ints)
+b. create the function pointers tab (check and tested, stack overflow my beloved)
+c. reverse atoi for disp (check and tested, for ints)
+d. use all (check and tested)
+e. optimise and delegate (check and tested)
+
+all good on my end, we'd send back strictly the do-op file imo
