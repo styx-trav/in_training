@@ -1,0 +1,23 @@
+okay, so i can admit when i've been bested
+
+struct lists are still a sore subject for me apparently, so more research is going to be necessary on that front. i need to get:
+a. how it works
+b. how it's handled
+c. why so many pointers ? just - why, i guess
+d. test it out a couple times, use it for something or other to find out how i can manipulate it in a more abstract way
+
+alright, tests to get done :
+a. create a linked list
+b. add a new head (check)
+c. add a new tail (check)
+d. add a new item using 1)value (check) 2)index (check)
+e. delete the head (check)
+f. delete the tail (check)
+g. delete an item using 1) value (check) 2)index (check)
+h. replace the head (check)
+i. replace the tail (check)
+j. replace an item using 1)value (check) 2)index (check)
+k. switch items using index (check)
+
+aaaand we're off !
+using this document as a reference and a playing field for functions in the future.

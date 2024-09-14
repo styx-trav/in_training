@@ -4,9 +4,16 @@
 
 t_list  *ft_create_elem(void *data)
 {
-  t_list  elem;
+  t_list  *elem;
 
-  t_list.data = data;
-  t_list.next = NULL;
-  return (&elem);
+  elem = NULL;
+  elem = (t_list *) malloc(sizeof(t_list));
+  if (elem == NULL)
+  {
+    free(elem);
+    return (NULL);
+  }
+  elem->data = data;
+  elem->next = NULL;
+  return (elem);
 }
