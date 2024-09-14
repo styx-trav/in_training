@@ -10,7 +10,7 @@ void  ft_list_clear(t_list *begin_list, void(*free_fct)(void *))
   current = begin_list;
   while (current != NULL)
   {
-    free_fct(current->data);
+    (*free_fct)(current->data);
     tmp = current->next;
     free(current);
     current = tmp;
