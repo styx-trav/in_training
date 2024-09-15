@@ -82,23 +82,18 @@ void  switch_items(t_list **head, int ind1, int ind2)
   add_item_by_index(head, ind2, val1);
 }
 
-void  ft_list_reverse(t_list **begin_list)
+void  ft_list_sort(t_list **begin_list)
 {
-  int len;
   int i;
   t_list  *current;
 
-  len = 0;
-  current = *begin_list;
-  while (current != NULL)
-  {
-    len++;
-    current = current->next;
-  }
   i = 0;
-  while (i < len / 2)
+  current = *begin_list;
+  while (current->next != NULL)
   {
-    switch_items(begin_list, i, len - i - 1);
+    if ((*cmp)(current->data, current->next->data) > 0)
+      switch_items(begin_list, i, i + 1);
+    current = current->next;
     i++;
   }
 }
