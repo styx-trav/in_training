@@ -1,0 +1,17 @@
+okay, so
+
+i want to try something, but i need it in words first.
+
+efficiently, if we could turn our binary tree into a sort of zigzagging linked chain, maybe we could get around our level problem ? like think : 
+              1
+           2     3
+         7   4  5   6
+    	   8   9 10
+    	         11
+and then instead of that you'd just have
+1 (right) 2 (left) 3 (right) 7 (left) 4 (left) 5 (left) 6 (right) 8 (left) 9 (left) 10 (right) 11 (NULL, NULL);
+that way we know we're on the same level while we're going left, adding a level when we go right, at the end when both are NULL.
+
+going to try and make it rn, be right back
+
+not sure what i'm doing wrong ? it'd be good if i could hand-test this, i think, given i'm getting some malloc/free pairs wrong and it's starting to stress me out. also so i could see why i'm losing my second added chain, and just how the function is meant to run in general. right now, it's back to the bus station.

@@ -52,8 +52,8 @@ void  btree_apply_prefix(t_btree *root, void (*applyf)(char *))
   if (current != NULL)
   {
     (*applyf)(current->item);
-    btree_apply_prefix(current->right, applyf);
     btree_apply_prefix(current->left, applyf);
+    btree_apply_prefix(current->right, applyf);
   }
 }
 
@@ -102,12 +102,120 @@ void  disp_tree_bylevel(t_btree *root, int i, int lev)
 
   current = root;
   if (i == lev && current != NULL)
+  {
     printf("here string: %s,\n", current->item);
+    return ;
+  }
   if (current != NULL)
   {
     disp_tree_bylevel(current->left, i + 1, lev);
     disp_tree_bylevel(current->right, i + 1, lev);
   }
+}
+
+int  disp_tree_bylevel_n2(t_btree *root, int i, int lev, int first)
+{
+  t_btree *current;
+
+  current = root;
+  if (root == NULL)
+    return (first);
+  if (i == lev)
+  {
+    if (first == 1)
+    {
+      printf("first of its level %d, ", lev);
+      first = 0;
+    }
+    printf("here string: %s,\n", current->item);
+  }
+  if (i < lev)
+  {
+    first = disp_tree_bylevel_n2(current->left, i + 1, lev, first);
+    first = disp_tree_bylevel_n2(current->right, i + 1, lev, first);
+  }
+  return (first);
+}
+
+t_btree **add_level(t_btree *root, int i, int lev, t_btree **previous, t_btree **first)
+{
+  t_btree *current;
+  t_btree *tmp;
+
+  current = root;
+  if (root == NULL)
+    return (previous);
+  if (i == lev)
+  {
+    tmp = btree_create_node(current->item);
+    if (first == previous)
+      (*previous)->right = tmp;
+    else
+      (*previous)->left = tmp;
+    previous = &tmp;
+  }
+  if (i < lev)
+  {
+    previous = add_level(current->left, i + 1, lev, previous, first);
+    previous = add_level(current->right, i + 1, lev, previous, first);
+  }
+  return (previous);
+}
+
+void  disp_level_chain(t_btree  *head)
+{
+  t_btree *current;
+  int i;
+
+  current = head;
+  i = 1;
+  printf("root node, ");
+  while (current != NULL)
+  {
+    printf("here string: %s,\n", current->item);
+    if (current->right != NULL)
+    {
+      printf("first of its level %d, ", i);
+      i++;
+      current = current->right;
+    }
+    else
+      current = current->left;
+  }
+}
+
+void  create_level_chain(t_btree *root, int depth)
+{
+  t_btree *head;
+  t_btree *current;
+  t_btree *tmp;
+  int i;
+
+  i = 1;
+  head = btree_create_node(root->item);
+  if (root == NULL)
+    return ;
+  current = head;
+  while (i < depth)
+  {
+    if (current->left == NULL && current->right == NULL)
+    {
+      tmp = (*add_level(root, 0, i, &current, &current));
+      i++;
+      if (tmp != NULL)
+        printf("here our lost one : %s\n", tmp->item);
+      free(tmp);
+      disp_level_chain(head);
+      free_tree(head);
+      return ;
+    }
+    else if (current->left == NULL)
+      current = current->right;
+    else
+      current = current->left;
+  }
+  disp_level_chain(head);
+  free_tree(head);
 }
 
 int tree_depth(t_btree  *root, int lev)
@@ -139,6 +247,22 @@ void  disp_tree_levels(t_btree *root, int depth)
   }
 }
 
+void  disp_tree_levels_n2(t_btree *root, int depth)
+{
+  int i;
+
+  i = 1;
+  if (root == NULL)
+    return ;
+  printf("first of its level and root node, here string: %s,\n", root->item);
+  while (i < depth)
+  {
+    if (disp_tree_bylevel_n2(root, 0, i, 1) == 1)
+      printf("none found here at level %d\n", i);
+    i++;
+  }
+}
+
 int main(int argc, char **argv)
 {
   t_btree *head;
@@ -162,7 +286,11 @@ int main(int argc, char **argv)
   disp_tree_inorder(head);
   printf("\n");
   disp_tree_postorder(head);
-  printf("\n, in levels:\n\n");
+  printf("\nin levels: 0-%d\n", tree_depth(head, 0));
   disp_tree_levels(head, tree_depth(head, 0));
+  printf("\n");
+  disp_tree_levels_n2(head, tree_depth(head, 0));
+  printf("\n");
+  //create_level_chain(head, tree_depth(head, 0));
   free_tree(head);
 }
