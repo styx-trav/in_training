@@ -15,3 +15,4 @@ that way we know we're on the same level while we're going left, adding a level 
 going to try and make it rn, be right back
 
 not sure what i'm doing wrong ? it'd be good if i could hand-test this, i think, given i'm getting some malloc/free pairs wrong and it's starting to stress me out. also so i could see why i'm losing my second added chain, and just how the function is meant to run in general. right now, it's back to the bus station.
+
